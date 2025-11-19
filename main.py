@@ -39,11 +39,6 @@ async def get_model(model_name: ModelName):
 async def read_item(skip: int = 0, limit: int = 10):
   return fake_items_db[skip : skip + limit]
 
-# This is a space for playing with lessons and learning
-# @app.get("/items/me")
-# def off_script_test():
-#    return "test_page.html"
-
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None, short: bool = False):
   item = {"item_id": item_id}
@@ -58,3 +53,19 @@ def read_item(item_id: int, q: Union[str, None] = None, short: bool = False):
 @app.put("/items/{item_id}")
 def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
+
+# multiple path and query parameters TotalSpend	2025-11-19 09:59:19.013	4488.21	USD
+
+@app.get("/users/{user_id}/items/{item_id}")
+async def read_user_item(
+   user_id: int, item_id: str, q: str | None = None, short: bool = False
+):
+    item = {"item_id" : item_id, "owner": user_id}
+    if q:
+       item.update({"q": q})
+    if not short:
+          item.update(
+             {"description": "This is a really really long item description!"}
+          )
+    return item
+      
