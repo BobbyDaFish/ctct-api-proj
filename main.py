@@ -1,4 +1,4 @@
-# left off at https://fastapi.tiangolo.com/tutorial/query-params/#multiple-path-and-query-parameters
+# left off at https://fastapi.tiangolo.com/tutorial/query-params/#required-query-parameters
 # resume lesson from there next time
 
 from typing import Union
